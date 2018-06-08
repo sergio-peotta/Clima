@@ -2,6 +2,8 @@ const request = require('request');
 
 var getClima = (latitude, longitude, callback) => {
 
+    var apiKey = '';
+
     request({
         url: `https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}`,
         json: true
