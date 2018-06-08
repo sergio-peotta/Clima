@@ -24,7 +24,9 @@ geocode.geocodeAddress(argv.address, (errorMessage, results) => {
                 console.log(err);
             } else {
                 console.log(`Coordinate: ${results.latitude}, ${results.longitude}`);
+                console.log(`Address: ${results.address}`);
                 console.log(`Temperatura: ${utility.getCelsius(res.temperature)}°`);
+                console.log(`Temperatura percepita: ${utility.getCelsius(res.apparentTemperature)}°`);
             }
         });
     }

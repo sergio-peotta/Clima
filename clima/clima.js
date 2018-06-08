@@ -13,7 +13,11 @@ var getClima = (latitude, longitude, callback) => {
         } else if (response.statusCode === 400) {
             callback('Unable to fetch weather.');
         } else if (response.statusCode === 200) {
-            callback(undefined, body.currently);
+            var res = {
+                temperature: body.currently.temperature,
+                apparentTemperature: body.currently.apparentTemperature
+            };
+            callback(undefined, res);
         }
     });
 };
