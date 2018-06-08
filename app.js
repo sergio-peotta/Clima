@@ -1,7 +1,7 @@
 const yargs = require('yargs');
 
-const geocode = require('./geocode/geocode.js');
-const clima = require('./clima/clima.js');
+const geocode = require('./geocode/geocode');
+const clima = require('./clima/clima');
 const utility = require('./utility.js');
 
 const argv = yargs.options({
@@ -15,19 +15,19 @@ const argv = yargs.options({
     .alias('help', 'h')
     .argv;
 
-geocode.geocodeAddress(argv.address, (errorMessage, results) => {
-    if (errorMessage) {
-        console.log(errorMessage);
-    } else {
-        clima.getClima(results.latitude, results.longitude, (err, res) => {
-            if (err) {
-                console.log(err);
-            } else {
-                console.log(`Coordinate: ${results.latitude}, ${results.longitude}`);
-                console.log(`Address: ${results.address}`);
+geocode.geocodeAddress(argv.address)
+    .then((resGeoCode) => {
+        clima.getClima(resGeoCode.latitude, resGeoCode.longitude)
+            .then((res) => {
+                console.log(`Coordinate: ${resGeoCode.latitude}, ${resGeoCode.longitude}`);
+                console.log(`Address: ${resGeoCode.address}`);
                 console.log(`Temperatura: ${utility.getCelsius(res.temperature)}°`);
                 console.log(`Temperatura percepita: ${utility.getCelsius(res.apparentTemperature)}°`);
-            }
-        });
-    }
-});
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    })
+    .catch((error) => {
+        console.log(error);
+    });
