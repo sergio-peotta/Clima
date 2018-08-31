@@ -19,15 +19,17 @@ geocode.geocodeAddress(argv.address)
     .then((resGeoCode) => {
         clima.getClima(resGeoCode.latitude, resGeoCode.longitude)
             .then((res) => {
+                console.log("b");
+                console.log(JSON.stringify(resGeoCode, undefined, 2));
                 console.log(`Coordinate: ${resGeoCode.latitude}, ${resGeoCode.longitude}`);
                 console.log(`Address: ${resGeoCode.address}`);
                 console.log(`Temperatura: ${utility.getCelsius(res.temperature)}°`);
                 console.log(`Temperatura percepita: ${utility.getCelsius(res.apparentTemperature)}°`);
             })
             .catch((err) => {
-                console.log(err);
+                console.log('Errore clima :', err);
             });
     })
     .catch((error) => {
-        console.log(error);
+        console.log('Errore geocode :', error);
     });

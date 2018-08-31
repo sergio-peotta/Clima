@@ -12,6 +12,8 @@ var getClima = (latitude, longitude) => {
         }, (error, response, body) => {
             if (error) {
                 reject('Unable to connect to Forecast.io server');
+            } else if (response.statusCode === 404) {
+                reject('Url not found.');
             } else if (response.statusCode === 400) {
                 reject('Unable to fetch weather.');
             } else if (response.statusCode === 200) {
