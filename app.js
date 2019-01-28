@@ -19,7 +19,6 @@ geocode.geocodeAddress(argv.address)
     .then((resGeoCode) => {
         clima.getClima(resGeoCode.latitude, resGeoCode.longitude)
             .then((res) => {
-                console.log("b");
                 console.log(JSON.stringify(resGeoCode, undefined, 2));
                 console.log(`Coordinate: ${resGeoCode.latitude}, ${resGeoCode.longitude}`);
                 console.log(`Address: ${resGeoCode.address}`);
