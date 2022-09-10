@@ -1,2 +1,2 @@
 echo off
-node h:\Progetti\UnPoDiTutto\Node\Clima\src\app.js -a "Mazzano" | grep -i "temperatura:"
+node E:\Progetti\Clima\app.js -a "Mazzano" | grep -i "temperatura:"
