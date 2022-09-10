@@ -4,7 +4,7 @@ var getClima = (latitude, longitude) => {
 
     return new Promise((resolve, reject) => {
 
-        var apiKey = 'd1205512cdafec68b452d8fb4a2ed9ad';
+        var apiKey = '';
 
         request({
             url: `https://api.darksky.net/forecast/${apiKey}/${latitude},${longitude}`,
