@@ -22,6 +22,8 @@ var geocodeAddress = (address) => {
                     latitude: body.results[0].geometry.location.lat,
                     longitude: body.results[0].geometry.location.lng
                 });
+            } else {
+                reject(JSON.stringify({error, response, body}));
             }
         });
 

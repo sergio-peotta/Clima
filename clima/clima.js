@@ -22,6 +22,8 @@ var getClima = (latitude, longitude) => {
                     apparentTemperature: body.currently.apparentTemperature
                 };
                 resolve(res);
+            } else {
+                reject(JSON.stringify({ error, response, body }));
             }
         });
 
